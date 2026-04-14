@@ -1,0 +1,369 @@
+:root {
+  --text: #6b6375;
+  --text-h: #08060d;
+  --bg: #faf9f7;
+  --border: #e5e4e7;
+  --card-bg: #fff;
+  --hover-bg: #f4f3f0;
+  --active-glow: rgba(0, 0, 0, 0.04);
+
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --serif: Georgia, 'Times New Roman', serif;
+
+  font: 16px/1.6 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #9ca3af;
+    --text-h: #f3f4f6;
+    --bg: #111116;
+    --border: #2a2a32;
+    --card-bg: #18181f;
+    --hover-bg: #1f1f28;
+    --active-glow: rgba(255, 255, 255, 0.04);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100svh;
+}
+
+/* ── Shared layout ── */
+.app {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ── Consent banner ── */
+.consent-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(480px, calc(100vw - 48px));
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 100;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.consent-text {
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--text);
+  flex: 1;
+}
+
+.consent-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.consent-btn {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: background 0.15s, opacity 0.15s;
+  white-space: nowrap;
+}
+
+.consent-btn--accept {
+  background: var(--text-h);
+  color: var(--bg);
+  border-color: var(--text-h);
+}
+
+.consent-btn--accept:hover {
+  opacity: 0.8;
+}
+
+.consent-btn--decline {
+  background: none;
+  color: var(--text);
+}
+
+.consent-btn--decline:hover {
+  background: var(--hover-bg);
+}
+
+/* ── Home: header ── */
+.site-header {
+  padding: 72px 0 56px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.site-title {
+  font-family: var(--serif);
+  font-size: 48px;
+  font-weight: normal;
+  letter-spacing: -1px;
+  color: var(--text-h);
+  margin-bottom: 8px;
+}
+
+.site-subtitle {
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  opacity: 0.5;
+}
+
+/* ── Home: story list ── */
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.story-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--card-bg);
+  transition: border-color 0.15s;
+}
+
+.story-card.open {
+  border-color: var(--text);
+}
+
+.story-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.story-header:hover {
+  background: var(--hover-bg);
+}
+
+.story-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.story-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: normal;
+  color: var(--text-h);
+  letter-spacing: -0.3px;
+}
+
+.story-description {
+  font-size: 14px;
+  color: var(--text);
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.story-arrow {
+  font-size: 16px;
+  color: var(--text);
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+
+.resume-hint {
+  font-size: 12px;
+  color: var(--text);
+  opacity: 0.45;
+  font-style: italic;
+}
+
+.chapter-list {
+  list-style: none;
+  border-top: 1px solid var(--border);
+}
+
+.chapter-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.chapter-item:last-child {
+  border-bottom: none;
+}
+
+.chapter-item:hover {
+  background: var(--hover-bg);
+}
+
+.chapter-number {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  opacity: 0.4;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.chapter-title {
+  font-size: 15px;
+  color: var(--text-h);
+}
+
+.last-read-badge {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text);
+  opacity: 0.4;
+  font-style: italic;
+}
+
+/* ── Story page: header ── */
+.story-page-header {
+  padding: 56px 0 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 56px;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--text);
+  opacity: 0.5;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 24px;
+  transition: opacity 0.15s;
+  font-family: var(--sans);
+}
+
+.back-link:hover {
+  opacity: 1;
+}
+
+/* ── Story page: chapter nav ── */
+.chapter-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 32px;
+}
+
+.chapter-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 0;
+  font-size: 14px;
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: color 0.15s;
+}
+
+.chapter-nav-item:last-child {
+  border-bottom: none;
+}
+
+.chapter-nav-item:hover {
+  color: var(--text-h);
+}
+
+.chapter-nav-item.active {
+  color: var(--text-h);
+  font-style: italic;
+}
+
+/* ── Story page: chapters ── */
+.chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+}
+
+.chapter {
+  scroll-margin-top: 32px;
+  padding: 40px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  transition: border-color 0.4s, background 0.4s;
+}
+
+.chapter--active {
+  border-color: var(--border);
+  background: var(--active-glow);
+}
+
+.chapter-heading {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: normal;
+  color: var(--text-h);
+  letter-spacing: -0.5px;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Chapter prose ── */
+.chapter-body {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--text);
+}
+
+.chapter-body p {
+  margin-bottom: 1.4em;
+}
+
+.chapter-body p:last-child {
+  margin-bottom: 0;
+}
+
+.chapter-body em {
+  font-style: italic;
+}
+
+.chapter-body hr {
+  border: none;
+  text-align: center;
+  margin: 2em 0;
+  color: var(--text);
+  opacity: 0.3;
+}
+
+.chapter-body hr::after {
+  content: '· · ·';
+}

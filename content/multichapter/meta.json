@@ -1,0 +1,9 @@
+{
+  "title": "The Hollow Bell",
+  "description": "A bell that had not rung in forty years.",
+  "theme": "dark-forest",
+  "chapters": [
+    { "slug": "01-the-arrival",    "title": "The Arrival" },
+    { "slug": "02-the-bell-tower", "title": "The Bell Tower" }
+  ]
+}
